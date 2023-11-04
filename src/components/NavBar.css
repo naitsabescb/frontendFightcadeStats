@@ -1,0 +1,23 @@
+body{
+    margin: 0;
+}
+
+.navbar{
+    display: flex;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar ul{
+    display: flex;
+    gap: 1rem;
+    list-style-type: none;
+    align-items: center;
+    background-color: white;
+}
+
+.navbar li{
+    background-color: white;
+}
+
