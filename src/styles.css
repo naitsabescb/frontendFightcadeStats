@@ -44,6 +44,26 @@ tr {
     width: 235px;
 }
 
+.global-rank-mobile, .character-img-mobile, .user-info-mobile, .rank-username, .country-mobile, .username-mobile, .country-mobile{
+    background-color: transparent;
+}
+
+.user-card{
+    display: flex;
+    column-gap: 1rem;
+    margin: 1rem;
+    padding: 1rem;
+    background-color: #fafafa;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 1px -1px, rgba(0, 0, 0, 0.14) 0px 1px 1px 0px, rgba(0, 0, 0, 0.12) 0px 1px 3px 0px;
+    border-radius: 5px;
+}
+
+.rank-username{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
 .rank-icon {
     border-radius: 50%;
     width: 1.5rem;

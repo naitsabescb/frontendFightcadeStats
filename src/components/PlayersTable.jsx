@@ -4,12 +4,23 @@ export const PlayersTable = () => {
   const [playersData, setPlayersData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
+  const [isMobile, setIsMobile] = useState(false);
   const itemsPerPage = 10;
   const rankList = ['', 'E', 'D', 'C', 'B', 'A', 'S'];
 
   useEffect(() => {
     // Realiza una llamada a la API cuando el componente se monta
     getPlayers();
+
+    function handleResize() {
+      setIsMobile(window.innerWidth <= 768);
+    }
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+
   }, []);
 
   const renderTable = () => {
@@ -24,43 +35,64 @@ export const PlayersTable = () => {
     return (
       <div>
         <div className="search-controls">
-        <input
-          type="text"
-          placeholder="Buscar por nombre de usuario"
-          value={searchTerm}
-          className='input-search-rank'
-          onChange={(e) => {
-            setSearchTerm(e.target.value);
-            setCurrentPage(1);
-          }}
-        />
+          <input
+            type="text"
+            placeholder="Buscar por nombre de usuario"
+            value={searchTerm}
+            className='input-search-rank'
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+              setCurrentPage(1);
+            }}
+          />
 
         </div>
         <table>
-          <thead>
-            <tr>
-              <th>Rank</th>
-              <th>Username</th>
-              <th>Character</th>
-              <th>Country</th>
-            </tr>
-          </thead>
+          {isMobile ? (
+            <div></div>
+          ) : (
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Username</th>
+                <th>Character</th>
+                <th>Country</th>
+              </tr>
+            </thead>
+          )}
+
           <tbody>
             {currentData.map((item) => (
-              <tr key={item.globalRank}>
-                <td className='rank-td'>{item.globalRank}</td>
-                <th>
-                  <div className='user-info'>
-                    <div className="character-img"></div>
-                    <div className={`rank-icon rank-icon-${item.rank}`}>{rankList[item.rank]}</div>
-                    <div className="username">
-                      
-                      <a href="">{item.username}</a>
-                      </div>
+              <tr className={`row-item-${isMobile ? 'mobile' : 'desktop'}`} key={item.globalRank}>
+                {isMobile ? (<div className='user-card'>
+                  <div className='global-rank-mobile'>{item.globalRank}</div>
+                  <div className="character-img-mobile"></div>
+                  <div className="user-info-mobile">
+                    <div className="rank-username">
+                      <div className={`rank-icon rank-icon-${item.rank}`}>{rankList[item.rank]}</div>
+                      <div className='username-mobile'>{item.username}</div>
+
+                    </div>
+                    <div className='character-mobile'>{item.character}</div>
+                    <div className='country-mobile'>{item.country}</div>
                   </div>
-                </th>
-                <td>{item.character}</td>
-                <td>{item.country}</td>
+                </div>) : (<>
+                  <td className='rank-td'>{item.globalRank}</td>
+                  <th>
+                    <div className='user-info'>
+                      <div className="character-img"></div>
+                      <div className={`rank-icon rank-icon-${item.rank}`}>{rankList[item.rank]}</div>
+                      <div className="username">
+
+                        <a href="">{item.username}</a>
+                      </div>
+                    </div>
+                  </th>
+                  <td>{item.character}</td>
+                  <td>{item.country}</td>
+                </>)
+                }
+
               </tr>
             ))}
           </tbody>
