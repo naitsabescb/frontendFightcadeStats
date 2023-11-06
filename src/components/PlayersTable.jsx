@@ -5,6 +5,7 @@ export const PlayersTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
   const itemsPerPage = 10;
+  const rankList = ['', 'E', 'D', 'C', 'B', 'A', 'S'];
 
   useEffect(() => {
     // Realiza una llamada a la API cuando el componente se monta
@@ -22,12 +23,19 @@ export const PlayersTable = () => {
 
     return (
       <div>
+        <div className="search-controls">
         <input
           type="text"
           placeholder="Buscar por nombre de usuario"
           value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          className='input-search-rank'
+          onChange={(e) => {
+            setSearchTerm(e.target.value);
+            setCurrentPage(1);
+          }}
         />
+
+        </div>
         <table>
           <thead>
             <tr>
@@ -40,8 +48,17 @@ export const PlayersTable = () => {
           <tbody>
             {currentData.map((item) => (
               <tr key={item.globalRank}>
-                <td>{item.globalRank}</td>
-                <td>{item.username}</td>
+                <td className='rank-td'>{item.globalRank}</td>
+                <th>
+                  <div className='user-info'>
+                    <div className="character-img"></div>
+                    <div className={`rank-icon rank-icon-${item.rank}`}>{rankList[item.rank]}</div>
+                    <div className="username">
+                      
+                      <a href="">{item.username}</a>
+                      </div>
+                  </div>
+                </th>
                 <td>{item.character}</td>
                 <td>{item.country}</td>
               </tr>
@@ -63,20 +80,23 @@ export const PlayersTable = () => {
 
   return (
     <>
-      <div>PlayersTable</div>
+
       {playersData.length > 0 ? renderTable() : 'Loading data...'}
       <div className="pagination">
         <button
           disabled={currentPage === 1}
           onClick={() => setCurrentPage(currentPage - 1)}
+          className='previous-page-btn'
         >
-          Previous
+          <i class="fa-solid fa-angle-left"></i>
         </button>
+        {currentPage}
         <button
+          className='next-page-btn'
           disabled={currentPage * itemsPerPage >= playersData.length}
           onClick={() => setCurrentPage(currentPage + 1)}
         >
-          Next
+          <i class="fa-solid fa-angle-right"></i>
         </button>
       </div>
     </>

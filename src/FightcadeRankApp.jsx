@@ -14,7 +14,6 @@ export const FightcadeRankApp = () => {
   return (
     <>
       <NavBar />
-      <h1>Fightcade Rank App</h1>
       <div className='main-section'>
         <PlayersTable />
 
