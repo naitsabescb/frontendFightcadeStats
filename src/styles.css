@@ -20,18 +20,22 @@ table {
     text-align: justify;
 }
 
+thead {
+    text-align: center;
+}
+
 tr {
     border-bottom: 1pt solid #e5e7eb;
 }
 
-.search-controls{
+.search-controls {
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 1rem;
 }
 
-.input-search-rank{
+.input-search-rank {
     border: solid 1px grey;
     background-color: white;
     padding: .5rem 1rem;
@@ -40,7 +44,7 @@ tr {
     width: 235px;
 }
 
-.rank-icon{
+.rank-icon {
     border-radius: 50%;
     width: 1.5rem;
     height: 1.5rem;
@@ -50,28 +54,30 @@ tr {
     font-weight: 400;
 }
 
-.rank-icon-6{
+.rank-icon-6 {
     border: solid 3px rgb(233, 70, 121);
 }
-.rank-icon-5{
+
+.rank-icon-5 {
     border: solid 3px rgb(159, 70, 176);
 }
-.rank-icon-4{
+
+.rank-icon-4 {
     border: solid 3px rgb(0, 170, 220);
 }
 
-.username a{
+.username a {
     font-weight: 400;
     color: #755EB5;
 }
 
-.user-info{
+.user-info {
     display: flex;
     gap: 1rem;
     align-items: center;
 }
 
-.pagination{
+.pagination {
     margin-top: 1rem;
     display: flex;
     align-items: center;
@@ -79,7 +85,8 @@ tr {
     justify-content: space-around;
 }
 
-.previous-page-btn, .next-page-btn{
+.previous-page-btn,
+.next-page-btn {
     border: none;
     font-size: large;
     border-radius: 50%;
@@ -87,10 +94,12 @@ tr {
     height: 30px;
 }
 
-.previous-page-btn:hover, .next-page-btn:hover{
+.previous-page-btn:hover,
+.next-page-btn:hover {
     background-color: #4e4e4e22;
 }
 
-i.fa-solid.fa-angle-right, i.fa-solid.fa-angle-left{
+i.fa-solid.fa-angle-right,
+i.fa-solid.fa-angle-left {
     background-color: transparent;
 }
