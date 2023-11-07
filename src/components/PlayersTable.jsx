@@ -103,6 +103,8 @@ export const PlayersTable = () => {
                       handleCharacterChange(event, item, newCharacterValue);
                     }}>
                       <option value="">Unknown</option>
+
+                      <option value="akuma">Akuma</option>
                       <option value="alex">Alex</option>
                       <option value="chun-li">Chun-Li</option>
                       <option value="dudley">Dudley</option>
