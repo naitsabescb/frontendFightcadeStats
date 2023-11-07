@@ -82,7 +82,34 @@ export const PlayersTable = () => {
                       <div className='username-mobile'>{item.username}</div>
 
                     </div>
-                    <div className='character-mobile'>{item.character}</div>
+                    <div className='character-mobile'>                  <td>
+                    <select name="" id="" value={selectedCharacters[item.globalRank] || item.character} onChange={(event) => {
+                      const newCharacterValue = event.target.value;
+                      handleCharacterChange(event, item, newCharacterValue);
+                    }}>
+                      <option value="">Unknown</option>
+
+                      <option value="akuma">Akuma</option>
+                      <option value="alex">Alex</option>
+                      <option value="chun-li">Chun-Li</option>
+                      <option value="dudley">Dudley</option>
+                      <option value="elena">Elena</option>
+                      <option value="hugo">Hugo</option>
+                      <option value="ibuki">Ibuki</option>
+                      <option value="ken">Ken</option>
+                      <option value="makoto">Makoto</option>
+                      <option value="necro">Necro</option>
+                      <option value="oro">Oro</option>
+                      <option value="q">Q</option>
+                      <option value="remy">Remy</option>
+                      <option value="ryu">Ryu</option>
+                      <option value="sean">Sean</option>
+                      <option value="twelve">Twelve</option>
+                      <option value="urien">Urien</option>
+                      <option value="yang">Yang</option>
+                      <option value="yun">Yun</option>
+                    </select>
+                  </td></div>
                     <div className='country-mobile'>{item.country}</div>
                   </div>
                 </div>) : (<>
