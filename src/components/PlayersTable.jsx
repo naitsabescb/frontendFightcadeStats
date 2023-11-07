@@ -7,6 +7,8 @@ export const PlayersTable = () => {
   const [isMobile, setIsMobile] = useState(false);
   const itemsPerPage = 10;
   const rankList = ['', 'E', 'D', 'C', 'B', 'A', 'S'];
+  const [selectedCharacters, setSelectedCharacters] = useState({});
+
 
   useEffect(() => {
     // Realiza una llamada a la API cuando el componente se monta
@@ -22,6 +24,13 @@ export const PlayersTable = () => {
     };
 
   }, []);
+
+  const handleCharacterChange = (event, item, newCharacterValue) => {
+    const newSelectedCharacters = { ...selectedCharacters };
+    newSelectedCharacters[item.globalRank] = newCharacterValue;
+    setSelectedCharacters(newSelectedCharacters);
+    updateCharacter(item.username, newCharacterValue)
+  };
 
   const renderTable = () => {
     const startIndex = (currentPage - 1) * itemsPerPage;
@@ -88,7 +97,32 @@ export const PlayersTable = () => {
                       </div>
                     </div>
                   </th>
-                  <td>{item.character}</td>
+                  <td>
+                    <select name="" id="" value={selectedCharacters[item.globalRank] || item.character} onChange={(event) => {
+                      const newCharacterValue = event.target.value;
+                      handleCharacterChange(event, item, newCharacterValue);
+                    }}>
+                      <option value="">Unknown</option>
+                      <option value="alex">Alex</option>
+                      <option value="chun-li">Chun-Li</option>
+                      <option value="dudley">Dudley</option>
+                      <option value="elena">Elena</option>
+                      <option value="hugo">Hugo</option>
+                      <option value="ibuki">Ibuki</option>
+                      <option value="ken">Ken</option>
+                      <option value="makoto">Makoto</option>
+                      <option value="necro">Necro</option>
+                      <option value="oro">Oro</option>
+                      <option value="q">Q</option>
+                      <option value="remy">Remy</option>
+                      <option value="ryu">Ryu</option>
+                      <option value="sean">Sean</option>
+                      <option value="twelve">Twelve</option>
+                      <option value="urien">Urien</option>
+                      <option value="yang">Yang</option>
+                      <option value="yun">Yun</option>
+                    </select>
+                  </td>
                   <td>{item.country}</td>
                 </>)
                 }
@@ -110,6 +144,21 @@ export const PlayersTable = () => {
       .catch(error => console.error('error', error));
   };
 
+  const updateCharacter = (username, newCharacter) => {
+
+    var raw = "";
+
+    var requestOptions = {
+      method: 'POST',
+      body: raw,
+      redirect: 'follow'
+    };
+    fetch(`https://us-central1-fightcade-rank.cloudfunctions.net/app/updateCharacter?username=${username}&character=${newCharacter}`, requestOptions)
+      .then(response => response.text())
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
+  }
+
   return (
     <>
 
@@ -120,7 +169,7 @@ export const PlayersTable = () => {
           onClick={() => setCurrentPage(currentPage - 1)}
           className='previous-page-btn'
         >
-          <i class="fa-solid fa-angle-left"></i>
+          <i className="fa-solid fa-angle-left"></i>
         </button>
         {currentPage}
         <button
@@ -128,7 +177,7 @@ export const PlayersTable = () => {
           disabled={currentPage * itemsPerPage >= playersData.length}
           onClick={() => setCurrentPage(currentPage + 1)}
         >
-          <i class="fa-solid fa-angle-right"></i>
+          <i className="fa-solid fa-angle-right"></i>
         </button>
       </div>
     </>
