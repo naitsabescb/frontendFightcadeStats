@@ -48,6 +48,11 @@ tr {
     background-color: transparent;
 }
 
+.character-img-mobile img {
+    height: 70px;
+    background-color: transparent;
+}
+
 .user-card{
     display: flex;
     column-gap: 1rem;
