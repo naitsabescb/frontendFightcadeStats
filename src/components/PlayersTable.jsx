@@ -76,7 +76,7 @@ export const PlayersTable = () => {
                 {isMobile ? (<div className='user-card'>
                   <div className='global-rank-mobile'>{item.globalRank}</div>
                   <div className="character-img-mobile">
-                    <img src={`../../public/images/${selectedCharacters[item.globalRank] || item.character}.png`} alt="" />
+                    <img src={`/public/images/${selectedCharacters[item.globalRank] || item.character}.png`} alt="" />
                   </div>
                   <div className="user-info-mobile">
                     <div className="rank-username">
