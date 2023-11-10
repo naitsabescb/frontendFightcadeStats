@@ -4,19 +4,21 @@ export const PlayersTable = () => {
   const [playersData, setPlayersData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768); // Establecer inicialmente isMobile
   const itemsPerPage = 10;
   const rankList = ['', 'E', 'D', 'C', 'B', 'A', 'S'];
   const [selectedCharacters, setSelectedCharacters] = useState({});
-
+  let resizeTimer;
 
   useEffect(() => {
-    // Realiza una llamada a la API cuando el componente se monta
     getPlayers();
 
     function handleResize() {
       setIsMobile(window.innerWidth <= 768);
     }
+
+    // Llamar a handleResize al inicio
+    handleResize();
 
     window.addEventListener('resize', handleResize);
     return () => {
