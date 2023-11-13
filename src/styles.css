@@ -53,7 +53,7 @@ tr {
     width: 235px;
 }
 
-.global-rank-mobile, .character-img-mobile, .user-info-mobile, .rank-username, .country-mobile, .username-mobile, .country-mobile{
+.global-rank-mobile, .character-img-mobile, .character-mobile, .user-info-mobile, .rank-username, .country-mobile, .username-mobile, .country-mobile{
     background-color: transparent;
 }
 
