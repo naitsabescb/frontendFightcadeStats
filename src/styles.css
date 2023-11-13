@@ -7,6 +7,15 @@
 }
 
 
+.logo{
+    background-color: transparent;
+}
+
+.logo img{
+    background-color: transparent;
+    max-height: 40px;
+}
+
 .main-section {
     max-width: 56rem;
     margin: auto;
@@ -36,7 +45,7 @@ tr {
 }
 
 .input-search-rank {
-    border: solid 1px grey;
+    border: solid 1px #bfbfbf;
     background-color: white;
     padding: .5rem 1rem;
     border-radius: 27px;

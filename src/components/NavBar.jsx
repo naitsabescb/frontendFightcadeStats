@@ -6,8 +6,9 @@ export const NavBar = () => {
     <>
         <div className="navbar">
             <ul>
-                <li>Ranking</li>
-                <li>Profile</li>
+                <div className="logo">
+                  <img src="/images/logo.webp" alt="" />
+                </div>
             </ul>
         </div>
     </>
