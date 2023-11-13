@@ -87,7 +87,7 @@ export const PlayersTable = () => {
 
                     </div>
                     <div className='character-mobile'>                  <td>
-                    <select name="" id="" value={selectedCharacters[item.globalRank] || item.character} onChange={(event) => {
+                    <select className='select-input-char' name="" id="" value={selectedCharacters[item.globalRank] || item.character} onChange={(event) => {
                       const newCharacterValue = event.target.value;
                       handleCharacterChange(event, item, newCharacterValue);
                     }}>
@@ -120,7 +120,9 @@ export const PlayersTable = () => {
                   <td className='rank-td'>{item.globalRank}</td>
                   <th>
                     <div className='user-info'>
-                      <div className="character-img"></div>
+                      <div className="character-img">
+                        <img src={`/images/${selectedCharacters[item.globalRank] || item.character}.png`} alt="" />
+                      </div>
                       <div className={`rank-icon rank-icon-${item.rank}`}>{rankList[item.rank]}</div>
                       <div className="username">
 
@@ -129,7 +131,7 @@ export const PlayersTable = () => {
                     </div>
                   </th>
                   <td>
-                    <select name="" id="" value={selectedCharacters[item.globalRank] || item.character} onChange={(event) => {
+                    <select className='select-input-char' name="" id="" value={selectedCharacters[item.globalRank] || item.character} onChange={(event) => {
                       const newCharacterValue = event.target.value;
                       handleCharacterChange(event, item, newCharacterValue);
                     }}>
