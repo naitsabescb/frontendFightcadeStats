@@ -91,7 +91,7 @@ export const PlayersTable = () => {
                       const newCharacterValue = event.target.value;
                       handleCharacterChange(event, item, newCharacterValue);
                     }}>
-                      <option value="">Unknown</option>
+                      <option value="unknown">Unknown</option>
 
                       <option value="akuma">Akuma</option>
                       <option value="alex">Alex</option>
@@ -135,7 +135,7 @@ export const PlayersTable = () => {
                       const newCharacterValue = event.target.value;
                       handleCharacterChange(event, item, newCharacterValue);
                     }}>
-                      <option value="">Unknown</option>
+                      <option value="unknown">Unknown</option>
 
                       <option value="akuma">Akuma</option>
                       <option value="alex">Alex</option>
