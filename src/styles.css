@@ -44,6 +44,22 @@ tr {
     margin-bottom: 1rem;
 }
 
+
+.advanced-search{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.country-select{
+    border: solid 1px #bfbfbf;
+    background-color: white;
+    padding: .5rem 1rem;
+    border-radius: 27px;
+    text-align: center;
+    width: 270px;
+}
+
 .input-search-rank {
     border: solid 1px #bfbfbf;
     background-color: white;
