@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css'
 
 export const PlayersTable = () => {
   const [playersData, setPlayersData] = useState([]);
@@ -6,6 +8,7 @@ export const PlayersTable = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [countrySearch, setCountrySearch] = useState('');
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768); // Establecer inicialmente isMobile
+  const [loading, setLoading] = useState(true);
   const itemsPerPage = 10;
   const rankList = ['', 'E', 'D', 'C', 'B', 'A', 'S'];
   const [selectedCharacters, setSelectedCharacters] = useState({});
@@ -34,6 +37,75 @@ export const PlayersTable = () => {
     setSelectedCharacters(newSelectedCharacters);
     updateCharacter(item.username, newCharacterValue)
   };
+
+  const loader = () => {
+    const renderRows = () => {
+      // Cambia el 10 por el número de veces que quieres repetir el elemento <tr>
+      const rows = Array.from({ length: 10 }, (_, index) => (
+        <tr className='row-item-desktop' key={index}>
+          <td className='rank-td'><Skeleton /></td>
+          <th>
+            <div className="user-info">
+              <div className="character-img">
+                <Skeleton
+                  circle
+                  width={70}
+                  height={70}
+                  containerClassName="avatar-skeleton"
+                />
+              </div>
+              <div className="rank-icon">
+                <Skeleton 
+                  circle
+                  width={30}
+                  height={30}
+                />
+              </div>
+              <div className="username">
+                <Skeleton 
+                  width={300}
+                  height={20}
+                />
+              </div>
+            </div>
+          </th>
+          <td>
+            <Skeleton 
+              width={120}
+              height={30}
+            />
+          </td>
+          <td>
+            <Skeleton 
+              width={100}
+              height={20}
+            />
+          </td>
+        </tr>
+      ));
+  
+      return rows;
+    };
+  
+    return (
+      <>
+        <table>
+          <thead>
+            <tr>
+              <th><Skeleton /></th>
+              <th><Skeleton /></th>
+              <th><Skeleton /></th>
+              <th><Skeleton /></th>
+            </tr>
+          </thead>
+          <tbody>
+            {renderRows()}
+          </tbody>
+        </table>
+      </>
+    );
+  }
+  
 
   const renderTable = () => {
     const startIndex = (currentPage - 1) * itemsPerPage;
@@ -449,7 +521,8 @@ export const PlayersTable = () => {
   return (
     <>
 
-      {playersData.length > 0 ? renderTable() : 'Loading data...'}
+      {playersData.length > 0 ? renderTable() : loader()}
+
       <div className="pagination">
         <button
           disabled={currentPage === 1}
