@@ -89,6 +89,10 @@ tr {
     gap: 3px;
 }
 
+.country-mobile, .country-flag, .country-name{
+    background-color: transparent;
+}
+
 .user-info-mobile{
     display: flex;
     flex-direction: column;
