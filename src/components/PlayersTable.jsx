@@ -211,7 +211,13 @@ export const PlayersTable = () => {
                         <option value="yun">Yun</option>
                       </select>
                     </td></div>
-                    <div className='country-mobile'>{item.country}</div>
+                    <div className='country-mobile'>
+                      <div className="country-flag">
+                        <img src={`https://flagsapi.com/${item.countryCode}/flat/64.png`} alt="" /></div>
+                      <div className="country-name">
+                        {item.country}
+                      </div>
+                    </div>
                   </div>
                 </div>) : (<>
                   <td className='rank-td'>{item.globalRank}</td>
@@ -255,7 +261,12 @@ export const PlayersTable = () => {
                       <option value="yun">Yun</option>
                     </select>
                   </td>
-                  <td>{item.country}</td>
+                  <td>
+                    <div className="country">
+                      <div className="country-flag"><img src={`https://flagsapi.com/${item.countryCode}/flat/64.png`} alt="" /></div>
+                      <div className="country-name">{item.country}</div>
+                    </div>
+                  </td>
                 </>)
                 }
 
@@ -275,48 +286,48 @@ export const PlayersTable = () => {
         console.error('Los datos de los jugadores no son un array:', playersData);
         return;
       }
-  
+
       // Crear un Set temporal para garantizar países únicos
       const countrySet = new Set(countries);
-  
+
       // Iterar sobre los datos de los jugadores y agregar países al Set
       playersData.forEach(player => {
         const country = player.country;
         countrySet.add(country);
       });
-  
+
       // Convertir el Set de países de nuevo a un array y establecer el estado
       setCountries(Array.from(countrySet));
-  
+
       console.log(countries);
     } catch (error) {
       console.error('Error al agregar países:', error);
     }
   };
-  
+
 
   const getPlayers = async () => {
     try {
       const response = await fetch("https://us-central1-fightcade-rank.cloudfunctions.net/app", {
         method: 'GET'
       });
-  
+
       if (!response.ok) {
         throw new Error('Error al obtener datos');
       }
-  
+
       const result = await response.json();
-  
+
       // Llamada a la función que agrega países
       addCountries(result);
-  
+
       // Establecer el estado de playersData
       setPlayersData(result);
     } catch (error) {
       console.error('Error:', error);
     }
   };
-  
+
   const updateCharacter = (username, newCharacter) => {
 
     var raw = "";

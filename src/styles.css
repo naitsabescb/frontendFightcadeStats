@@ -73,6 +73,22 @@ tr {
     background-color: transparent;
 }
 
+.country{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.country-flag img{
+    width: 2rem;
+}
+
+.country-mobile{
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
 .user-info-mobile{
     display: flex;
     flex-direction: column;
