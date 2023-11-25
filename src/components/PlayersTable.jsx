@@ -169,7 +169,8 @@ export const PlayersTable = () => {
               <option value="">All</option>
               {characters.sort().map((character, index) => (
                 <option key={index} value={character}>
-                  {character}
+                      {capitalizeFirstLetter(character)}
+
                 </option>
               ))}
             </select>
@@ -325,6 +326,10 @@ export const PlayersTable = () => {
       console.error('Error al agregar países:', error);
     }
   };
+
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
 
 
   const addCountries = (playersData) => {
