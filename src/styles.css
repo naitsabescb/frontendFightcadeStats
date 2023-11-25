@@ -54,6 +54,14 @@ tr {
     align-items: center;
 }
 
+.country-search, .characterSearch{
+    display: flex;
+    flex-direction: column;
+    font-size: 11px;
+    align-items: center;
+    color: #8d8d8d;
+}
+
 .country-select, .character-select{
     border: solid 1px #bfbfbf;
     background-color: white;

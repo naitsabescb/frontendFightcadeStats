@@ -147,10 +147,12 @@ export const PlayersTable = () => {
         </div>
         <div className="advanced-search">
           <div className="countrySearch">
+          <label htmlFor="country-select">Country:</label>
+
             <select placeholder='Buscar por país' className='country-select' onChange={(e) => {
               setCountrySearch(e.target.value);
               setCurrentPage(1);
-            }} name="country-search" id="">
+            }} name="country-search" id="country-select">
               <option value="">All</option>
               {countries.sort().map((country, index) => (
                 <option key={index} value={country}>
@@ -162,10 +164,13 @@ export const PlayersTable = () => {
           </div>
 
           <div className="characterSearch">
+
+          <label htmlFor="country-select">Character:</label>
+
             <select placeholder='Buscar por personaje' className='character-select' onChange={(e) => {
               setCharacterSearch(e.target.value);
               setCurrentPage(1);
-            }} name="character-search" id="">
+            }} name="character-search" id="country-select">
               <option value="">All</option>
               {characters.sort().map((character, index) => (
                 <option key={index} value={character}>
