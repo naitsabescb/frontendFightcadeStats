@@ -7,6 +7,7 @@ export const PlayersTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
   const [countrySearch, setCountrySearch] = useState('');
+  const [characterSearch, setCharacterSearch] = useState('');
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768); // Establecer inicialmente isMobile
 
   const itemsPerPage = 10;
@@ -14,6 +15,7 @@ export const PlayersTable = () => {
   const [selectedCharacters, setSelectedCharacters] = useState({});
   let resizeTimer;
   const [countries, setCountries] = useState([]);
+  const [characters, setCharacters] = useState([]);
 
   useEffect(() => {
     getPlayers();
@@ -120,8 +122,9 @@ export const PlayersTable = () => {
     const filteredData = playersData.filter((item) => {
       const usernameMatch = item.username.toLowerCase().includes(searchTerm.toLowerCase());
       const countryMatch = item.country.toLowerCase().includes(countrySearch.toLowerCase());
+      const characterMatch = item.character.toLowerCase().includes(characterSearch.toLowerCase());
 
-      return usernameMatch && countryMatch;
+      return usernameMatch && countryMatch && characterMatch;
     });
 
     const currentData = filteredData.slice(startIndex, endIndex);
@@ -143,17 +146,35 @@ export const PlayersTable = () => {
 
         </div>
         <div className="advanced-search">
-          <select placeholder='Buscar por país' className='country-select' onChange={(e) => {
-            setCountrySearch(e.target.value);
-            setCurrentPage(1);
-          }} name="country-search" id="">
-            <option value="">All</option>
-            {countries.sort().map((country, index) => (
-              <option key={index} value={country}>
-                {country}
-              </option>
-            ))}
-          </select>
+          <div className="countrySearch">
+            <select placeholder='Buscar por país' className='country-select' onChange={(e) => {
+              setCountrySearch(e.target.value);
+              setCurrentPage(1);
+            }} name="country-search" id="">
+              <option value="">All</option>
+              {countries.sort().map((country, index) => (
+                <option key={index} value={country}>
+                  {country}
+                </option>
+              ))}
+            </select>
+
+          </div>
+
+          <div className="characterSearch">
+            <select placeholder='Buscar por personaje' className='character-select' onChange={(e) => {
+              setCharacterSearch(e.target.value);
+              setCurrentPage(1);
+            }} name="character-search" id="">
+              <option value="">All</option>
+              {characters.sort().map((character, index) => (
+                <option key={index} value={character}>
+                  {character}
+                </option>
+              ))}
+            </select>
+
+          </div>
         </div>
         <table>
           {isMobile ? (
@@ -279,6 +300,33 @@ export const PlayersTable = () => {
   };
 
 
+  const addCharacters = (playersData) => {
+    try {
+      // Verificar que playersData sea un array antes de continuar
+      if (!Array.isArray(playersData)) {
+        console.error('Los datos de los jugadores no son un array:', playersData);
+        return;
+      }
+
+      // Crear un Set temporal para garantizar países únicos
+      const characterSet = new Set(characters);
+
+      // Iterar sobre los datos de los jugadores y agregar países al Set
+      playersData.forEach(player => {
+        const character = player.character;
+        characterSet.add(character);
+      });
+
+      // Convertir el Set de países de nuevo a un array y establecer el estado
+      setCharacters(Array.from(characterSet));
+
+      console.log(characters);
+    } catch (error) {
+      console.error('Error al agregar países:', error);
+    }
+  };
+
+
   const addCountries = (playersData) => {
     try {
       // Verificar que playersData sea un array antes de continuar
@@ -320,6 +368,7 @@ export const PlayersTable = () => {
 
       // Llamada a la función que agrega países
       addCountries(result);
+      addCharacters(result);
 
       // Establecer el estado de playersData
       setPlayersData(result);
