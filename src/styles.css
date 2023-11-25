@@ -54,7 +54,7 @@ tr {
     align-items: center;
 }
 
-.country-search, .characterSearch{
+.countrySearch, .characterSearch{
     display: flex;
     flex-direction: column;
     font-size: 11px;
