@@ -202,7 +202,7 @@ export const PlayersTable = () => {
                 {isMobile ? (<div className='user-card'>
                   <div className='global-rank-mobile'>{item.globalRank}</div>
                   <div className="character-img-mobile">
-                    <img src={`/images/${selectedCharacters[item.globalRank] || item.character}.png`} alt="" />
+                    <img src={`/images/${item.character ? `${item.character}.png` : 'unknown.png'}`} alt="" />
                   </div>
                   <div className="user-info-mobile">
                     <div className="rank-username">
@@ -251,7 +251,7 @@ export const PlayersTable = () => {
                   <th>
                     <div className='user-info'>
                       <div className="character-img">
-                        <img src={`/images/${item.character ? `${item.character}.png` : 'unknown.png'}`}alt="" />
+                        <img src={`/images/${item.character ? `${item.character}.png` : 'unknown.png'}`} alt="" />
                       </div>
                       <div className={`rank-icon rank-icon-${item.rank}`}>{rankList[item.rank]}</div>
                       <div className="username">
