@@ -119,6 +119,8 @@ tr {
 .character-img{
     width: 6rem;
     height: 6rem;
+    display: flex;
+    align-items: center;
 }
 
 .character-img img{
