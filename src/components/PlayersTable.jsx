@@ -147,7 +147,7 @@ export const PlayersTable = () => {
         </div>
         <div className="advanced-search">
           <div className="countrySearch">
-          <label htmlFor="country-select">Country:</label>
+            <label htmlFor="country-select">Country:</label>
 
             <select placeholder='Buscar por país' className='country-select' onChange={(e) => {
               setCountrySearch(e.target.value);
@@ -165,7 +165,7 @@ export const PlayersTable = () => {
 
           <div className="characterSearch">
 
-          <label htmlFor="country-select">Character:</label>
+            <label htmlFor="country-select">Character:</label>
 
             <select placeholder='Buscar por personaje' className='character-select' onChange={(e) => {
               setCharacterSearch(e.target.value);
@@ -174,7 +174,7 @@ export const PlayersTable = () => {
               <option value="">All</option>
               {characters.sort().map((character, index) => (
                 <option key={index} value={character}>
-                      {capitalizeFirstLetter(character)}
+                  {capitalizeFirstLetter(character)}
 
                 </option>
               ))}
@@ -202,7 +202,7 @@ export const PlayersTable = () => {
                 {isMobile ? (<div className='user-card'>
                   <div className='global-rank-mobile'>{item.globalRank}</div>
                   <div className="character-img-mobile">
-                    <img src={`/images/${selectedCharacters[item.globalRank] || item.character}.png`} alt="" />
+                    <img src={`/images/${(selectedCharacters[item.globalRank] || item.character || 'unknown')}.png`} alt="" />
                   </div>
                   <div className="user-info-mobile">
                     <div className="rank-username">
@@ -251,7 +251,10 @@ export const PlayersTable = () => {
                   <th>
                     <div className='user-info'>
                       <div className="character-img">
-                        <img src={`/images/${selectedCharacters[item.globalRank] || item.character}.png`} alt="" />
+                        <img
+                          src={`/images/${(selectedCharacters[item.globalRank] || item.character || 'unknown')}.png`}
+                          alt=""
+                        />
                       </div>
                       <div className={`rank-icon rank-icon-${item.rank}`}>{rankList[item.rank]}</div>
                       <div className="username">
