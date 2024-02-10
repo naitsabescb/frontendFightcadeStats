@@ -369,7 +369,7 @@ export const PlayersTable = () => {
 
   const getPlayers = async () => {
     try {
-      const response = await fetch("https://us-central1-fightcade-rank.cloudfunctions.net/app", {
+      const response = await fetch("http://localhost:3000/", {
         method: 'GET'
       });
 
@@ -389,6 +389,28 @@ export const PlayersTable = () => {
       console.error('Error:', error);
     }
   };
+  // const getPlayers = async () => {
+  //   try {
+  //     const response = await fetch("https://us-central1-fightcade-rank.cloudfunctions.net/app", {
+  //       method: 'GET'
+  //     });
+
+  //     if (!response.ok) {
+  //       throw new Error('Error al obtener datos');
+  //     }
+
+  //     const result = await response.json();
+
+  //     // Llamada a la función que agrega países
+  //     addCountries(result);
+  //     addCharacters(result);
+
+  //     // Establecer el estado de playersData
+  //     setPlayersData(result);
+  //   } catch (error) {
+  //     console.error('Error:', error);
+  //   }
+  // };
 
   const updateCharacter = (username, newCharacter) => {
 
@@ -399,7 +421,7 @@ export const PlayersTable = () => {
       body: raw,
       redirect: 'follow'
     };
-    fetch(`https://us-central1-fightcade-rank.cloudfunctions.net/app/updateCharacter?username=${username}&character=${newCharacter}`, requestOptions)
+    fetch(`http://localhost:3000/updateCharacter?username=${username}&character=${newCharacter}`, requestOptions)
       .then(response => response.text())
       .then(result => console.log(result))
       .catch(error => console.log('error', error));
